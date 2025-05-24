@@ -1,4 +1,3 @@
-// src/components/BigBoard.tsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -45,7 +44,7 @@ const BigBoard: React.FC = () => {
     setSelectedPlayers(prev => {
       if (prev.includes(playerId)) return prev.filter(id => id !== playerId);
       if (prev.length < 2) return [...prev, playerId];
-      return prev; // only allow 2
+      return prev;
     });
   };
 
@@ -97,10 +96,16 @@ const BigBoard: React.FC = () => {
         variant="outlined"
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
-        sx={{ mb: 3, width: '100%', maxWidth: 400 }}
+        sx={{
+          mb: 3,
+          width: '100%',
+          maxWidth: 400,
+          backgroundColor: 'white',
+          borderRadius: 1,
+        }}
       />
 
-      <FormControl sx={{ mb: 3, width: '100%', maxWidth: 400 }}>
+      <FormControl sx={{ mb: 3, width: '100%', maxWidth: 400, backgroundColor: 'white', borderRadius: 1 }}>
         <InputLabel>Filter by Scout</InputLabel>
         <Select
           value={scoutFilter}
@@ -116,7 +121,7 @@ const BigBoard: React.FC = () => {
         </Select>
       </FormControl>
 
-      <FormControl sx={{ mb: 4, width: '100%', maxWidth: 400 }}>
+      <FormControl sx={{ mb: 4, width: '100%', maxWidth: 400, backgroundColor: 'white', borderRadius: 1 }}>
         <InputLabel>Sort By</InputLabel>
         <Select
           value={sortBy}

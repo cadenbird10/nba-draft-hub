@@ -40,3 +40,11 @@
 .read-the-docs {
   color: #888;
 }
+
+/* Light baby blue background for the whole app */
+body {
+  background-color: #e6f2fb; 
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+}
