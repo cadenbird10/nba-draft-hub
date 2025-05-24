@@ -53,3 +53,4 @@ src/
 - Add dark mode toggle
 - Persist scouting reports using localStorage
 - Enhance comparison view with visual charts
+- Add measurements to comparison page
