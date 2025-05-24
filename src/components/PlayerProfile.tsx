@@ -1,22 +1,7 @@
 // src/components/PlayerProfile.tsx
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import {
-  Box,
-  Typography,
-  Button,
-  Avatar,
-  Card,
-  CardContent,
-  TextField,
-  Paper,
-  ToggleButton,
-  ToggleButtonGroup,
-  Table,
-  TableBody,
-  TableCell,
-  TableRow,
-} from '@mui/material';
+import { Box, Typography, Button, Avatar, Card, CardContent, TextField, Paper, ToggleButton, ToggleButtonGroup, Table, TableBody, TableCell, TableRow,} from '@mui/material';
 import {
   bio,
   scoutingReports,
@@ -75,9 +60,22 @@ const PlayerProfile: React.FC = () => {
 
   return (
     <Box p={4} display="flex" flexDirection="column" alignItems="center">
-      <Button variant="outlined" sx={{ alignSelf: 'flex-start', mb: 3 }} onClick={() => navigate('/')}>
+      <Button
+        variant="outlined"
+        sx={{
+          alignSelf: 'flex-start',
+          mb: 3,
+          backgroundColor: 'white',
+          color: 'black',
+          '&:hover': {
+            backgroundColor: '#f0f0f0',
+          },
+        }}
+        onClick={() => navigate('/')}
+      >
         ← Back to Big Board
       </Button>
+
 
       <Card sx={{ maxWidth: 900, width: '100%', mb: 4 }}>
         <CardContent>
@@ -106,16 +104,17 @@ const PlayerProfile: React.FC = () => {
       <Box sx={{ maxWidth: 900, width: '100%', mb: 4 }}>
         <Typography variant="h5" gutterBottom>Season Stats</Typography>
 
-        <ToggleButtonGroup
-          color="primary"
-          value={statMode}
-          exclusive
-          onChange={handleStatModeChange}
-          sx={{ mb: 2 }}
-        >
-          <ToggleButton value="perGame">Per Game</ToggleButton>
-          <ToggleButton value="totals">Season Totals</ToggleButton>
-        </ToggleButtonGroup>
+      <ToggleButtonGroup
+        color="primary"
+        value={statMode}
+        exclusive
+        onChange={handleStatModeChange}
+        sx={{ mb: 2, backgroundColor: 'white', borderRadius: 1 }}
+      >
+        <ToggleButton value="perGame">Per Game</ToggleButton>
+        <ToggleButton value="totals">Season Totals</ToggleButton>
+      </ToggleButtonGroup>
+
 
         {playerStats ? (
           <Table>
@@ -161,10 +160,11 @@ const PlayerProfile: React.FC = () => {
           value="check"
           selected={showFullStats}
           onChange={() => setShowFullStats((prev) => !prev)}
-          sx={{ mb: 2 }}
+          sx={{ mb: 2, backgroundColor: 'white', borderRadius: 1 }}
         >
           {showFullStats ? 'Hide Full Stats' : 'Show Full Season Stats'}
         </ToggleButton>
+
 
         {showFullStats && playerStats ? (
           <Table>
@@ -190,14 +190,15 @@ const PlayerProfile: React.FC = () => {
       <Box sx={{ maxWidth: 900, width: '100%', mb: 4 }}>
         <Typography variant="h5" gutterBottom>Measurements</Typography>
 
-        <ToggleButton
-          value="check"
-          selected={showMeasurements}
-          onChange={() => setShowMeasurements((prev) => !prev)}
-          sx={{ mb: 2 }}
-        >
-          {showMeasurements ? 'Hide Measurements' : 'Show Measurements'}
-        </ToggleButton>
+      <ToggleButton
+        value="check"
+        selected={showMeasurements}
+        onChange={() => setShowMeasurements((prev) => !prev)}
+        sx={{ mb: 2, backgroundColor: 'white', borderRadius: 1 }}
+      >
+        {showMeasurements ? 'Hide Measurements' : 'Show Measurements'}
+      </ToggleButton>
+
 
         {showMeasurements && playerMeasurements ? (
           <Table>
@@ -220,43 +221,65 @@ const PlayerProfile: React.FC = () => {
       </Box>
 
       {/* Scouting Report Form */}
-      <Box component="form" onSubmit={handleSubmit} sx={{ maxWidth: 900, width: '100%', mb: 4 }}>
-        <Typography variant="h5" gutterBottom>Add a Scouting Report</Typography>
-        <TextField
-          fullWidth
-          label="Scout Name"
-          variant="outlined"
-          value={scoutName}
-          onChange={(e) => setScoutName(e.target.value)}
-          sx={{ mb: 2 }}
-        />
-        <TextField
-          fullWidth
-          label="Report"
-          multiline
-          minRows={4}
-          variant="outlined"
-          value={newReport}
-          onChange={(e) => setNewReport(e.target.value)}
-          sx={{ mb: 2 }}
-        />
-        <Button type="submit" variant="contained">Submit Report</Button>
-      </Box>
+        <Box
+          component="form"
+          onSubmit={handleSubmit}
+          sx={{
+            maxWidth: 900,
+            width: '100%',
+            mb: 4,
+            backgroundColor: 'white',
+            p: 3,
+            borderRadius: 2,
+            boxShadow: 1,
+          }}
+        >
+          <Typography variant="h5" gutterBottom>Add a Scouting Report</Typography>
+          <TextField
+            fullWidth
+            label="Scout Name"
+            variant="outlined"
+            value={scoutName}
+            onChange={(e) => setScoutName(e.target.value)}
+            sx={{ mb: 2, backgroundColor: 'white' }}
+          />
+          <TextField
+            fullWidth
+            label="Report"
+            multiline
+            minRows={4}
+            variant="outlined"
+            value={newReport}
+            onChange={(e) => setNewReport(e.target.value)}
+            sx={{ mb: 2, backgroundColor: 'white' }}
+          />
+          <Button type="submit" variant="contained">Submit Report</Button>
+        </Box>
 
-      {/* Report List */}
-      <Box sx={{ maxWidth: 900, width: '100%' }}>
-        <Typography variant="h5" gutterBottom>Scouting Reports</Typography>
-        {reports.length === 0 ? (
-          <Typography color="text.secondary">No reports yet.</Typography>
-        ) : (
-          reports.map((r) => (
-            <Paper key={r.reportId} sx={{ p: 2, mb: 2 }}>
-              <Typography variant="subtitle2" color="text.secondary">{r.scout}</Typography>
-              <Typography variant="body1">{r.report}</Typography>
-            </Paper>
-          ))
-        )}
-      </Box>
+        {/* Report List */}
+        <Box sx={{ maxWidth: 900, width: '100%' }}>
+          <Typography variant="h5" gutterBottom>Scouting Reports</Typography>
+          {reports.length === 0 ? (
+            <Typography color="text.secondary">No reports yet.</Typography>
+          ) : (
+            reports.map((r) => (
+              <Paper
+                key={r.reportId}
+                sx={{
+                  p: 2,
+                  mb: 2,
+                  backgroundColor: 'white',
+                  borderRadius: 1,
+                  boxShadow: 1,
+                }}
+              >
+                <Typography variant="subtitle2" color="text.secondary">{r.scout}</Typography>
+                <Typography variant="body1">{r.report}</Typography>
+              </Paper>
+            ))
+          )}
+        </Box>
+
     </Box>
   );
 };

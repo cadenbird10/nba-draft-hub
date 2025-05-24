@@ -43,9 +43,22 @@ const ComparePage: React.FC = () => {
 
   return (
     <Box p={4}>
-      <Button variant="outlined" onClick={() => navigate('/')}>
+      <Button
+        variant="outlined"
+        sx={{
+          alignSelf: 'flex-start',
+          mb: 3,
+          backgroundColor: 'white',
+          color: 'black',
+          '&:hover': {
+            backgroundColor: '#f0f0f0',
+          },
+        }}
+        onClick={() => navigate('/')}
+      >
         ← Back to Big Board
       </Button>
+
 
       <Typography variant="h4" align="center" gutterBottom>
         Player Comparison
