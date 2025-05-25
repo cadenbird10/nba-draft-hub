@@ -66,24 +66,20 @@ const BigBoard: React.FC = () => {
       return typeof rank === 'number' && rank <= 10;
     })
     .sort((a, b) => {
-      if (scoutFilter) {
-        const aRank = a.ranking?.[scoutFilter];
-        const bRank = b.ranking?.[scoutFilter];
-        return Number(aRank ?? Infinity) - Number(bRank ?? Infinity);
-      }
-
       if (sortBy === 'heightAsc') return a.height - b.height;
       if (sortBy === 'heightDesc') return b.height - a.height;
 
       if (sortBy === 'ageAsc') {
-        return new Date(b.birthDate).getTime() - new Date(a.birthDate).getTime();
+        return new Date(b.birthDate).getTime() - new Date(a.birthDate).getTime(); // younger first
       }
       if (sortBy === 'ageDesc') {
-        return new Date(a.birthDate).getTime() - new Date(b.birthDate).getTime();
+        return new Date(a.birthDate).getTime() - new Date(b.birthDate).getTime(); // older first
       }
 
+      // Default sort by average rank
       return a.avgRank - b.avgRank;
     });
+
 
   return (
     <Box p={4} display="flex" flexDirection="column" alignItems="center">
